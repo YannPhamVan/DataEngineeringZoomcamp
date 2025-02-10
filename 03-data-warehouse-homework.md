@@ -92,11 +92,16 @@ f0_
 
 ## Question 5:
 What is the best strategy to make an optimized table in Big Query if your query will always filter based on tpep_dropoff_datetime and order the results by VendorID (Create a new table with this strategy)
-- Partition by tpep_dropoff_datetime and Cluster on VendorID
+- **Partition by tpep_dropoff_datetime and Cluster on VendorID**
 - Cluster on by tpep_dropoff_datetime and Cluster on VendorID
 - Cluster on tpep_dropoff_datetime Partition by VendorID
 - Partition by tpep_dropoff_datetime and Partition by VendorID
-
+```sql
+CREATE OR REPLACE TABLE `noted-lead-448822-q9.taxi_data.optimized_table`
+PARTITION BY DATE(tpep_dropoff_datetime)
+CLUSTER BY VendorID AS
+SELECT * FROM `noted-lead-448822-q9.taxi_data.external_yellow_taxi_2024`;
+```
 
 ## Question 6:
 Write a query to retrieve the distinct VendorIDs between tpep_dropoff_datetime
@@ -107,28 +112,46 @@ Use the materialized table you created earlier in your from clause and note the 
 Choose the answer which most closely matches.</br> 
 
 - 12.47 MB for non-partitioned table and 326.42 MB for the partitioned table
-- 310.24 MB for non-partitioned table and 26.84 MB for the partitioned table
+- **310.24 MB for non-partitioned table and 26.84 MB for the partitioned table**
 - 5.87 MB for non-partitioned table and 0 MB for the partitioned table
 - 310.31 MB for non-partitioned table and 285.64 MB for the partitioned table
+```sql
+SELECT DISTINCT VendorID
+FROM `noted-lead-448822-q9.taxi_data.internal_yellow_taxi_2024`
+WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
 
+Cette requête traitera 310,24 Mo lors de son exécution.
+```
+```sql
+SELECT DISTINCT VendorID
+FROM `noted-lead-448822-q9.taxi_data.optimized_table`
+WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
 
+Cette requête traitera 26,84 Mo lors de son exécution.
+```
 ## Question 7: 
 Where is the data stored in the External Table you created?
 
 - Big Query
 - Container Registry
-- GCP Bucket
+- **GCP Bucket**
 - Big Table
 
 ## Question 8:
 It is best practice in Big Query to always cluster your data:
 - True
-- False
+- **False**
 
 
 ## (Bonus: Not worth points) Question 9:
 No Points: Write a `SELECT count(*)` query FROM the materialized table you created. How many bytes does it estimate will be read? Why?
+```sql
+SELECT COUNT(*) FROM `noted-lead-448822-q9.taxi_data.internal_yellow_taxi_2024`
 
+1. Optimization of Materialized Tables: Materialized tables are designed to store pre-computed query results. This means that the data is already aggregated and optimized for fast queries, such as SELECT count(*). BigQuery can use metadata to answer this query without reading the underlying data.
+2. Statistics and Metadata: BigQuery uses statistics and metadata to optimize queries. For a count(*) query, it can simply use this information to return the number of rows without having to scan the entire table.
+3. Read Cost: In the case of materialized tables, the read cost is often reduced because the data is already organized to minimize the volume of data that needs to be read to answer common queries.
+```
 
 ## Submitting the solutions
 
