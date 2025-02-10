@@ -148,6 +148,8 @@ No Points: Write a `SELECT count(*)` query FROM the materialized table you creat
 ```sql
 SELECT COUNT(*) FROM `noted-lead-448822-q9.taxi_data.internal_yellow_taxi_2024`
 
+Cette requête traitera 0 octets lors de son exécution.
+
 1. Optimization of Materialized Tables: Materialized tables are designed to store pre-computed query results. This means that the data is already aggregated and optimized for fast queries, such as SELECT count(*). BigQuery can use metadata to answer this query without reading the underlying data.
 2. Statistics and Metadata: BigQuery uses statistics and metadata to optimize queries. For a count(*) query, it can simply use this information to return the number of rows without having to scan the entire table.
 3. Read Cost: In the case of materialized tables, the read cost is often reduced because the data is already organized to minimize the volume of data that needs to be read to answer common queries.
