@@ -1,22 +1,22 @@
 # Conversation avec ChatGPT au sujet de kestra, dlt et du data warehouse
 J'ai engagé cette conversation car j'avais besoin de clarifier les derniers apprentissages engrangés après les premiers modules du Data Engineering Zoomcamp. Enjoy !
----
-Vous avez dit :
 
+Vous avez dit :
+---
 *Suite aux derniers apprentissages, j'ai l'impression qu'il y a des finalités ou plutôt des fonctionnalités comparables entre kestra et dlt. Est-ce vrai ou seulement une impression. Peux-tu synthétiser ce qui les rapproche éventuellement et ce qui les différencie ?*
 
 ChatGPT a dit :
-
+---
 *Tu as raison de percevoir des similitudes entre **Kestra** et **DLT (Data Load Tool)**, car ces deux outils visent à **automatiser l’ingestion et le traitement des données**, mais leurs finalités et leur approche sont différentes.*
 
-## Ce qui les rapproche
+### Ce qui les rapproche
 🔹 **Automatisation des workflows** → Les deux permettent d’orchestrer le chargement et la transformation des données.
 
 🔹 **Intégration avec le cloud** → Tous deux peuvent interagir avec des bases de données, des APIs ou des data lakes sur le cloud (comme BigQuery ou S3).
 
 🔹 **Réduction du boilerplate** → L’objectif commun est de simplifier le code nécessaire pour gérer les pipelines de données.
 
-## Ce qui les différencie
+### Ce qui les différencie
 
 | Critères | Kestra | DLT |
 | --- | --- | --- |
@@ -27,19 +27,19 @@ ChatGPT a dit :
 | **Flexibilité** | Très personnalisable (planification, erreurs, conditions, parallélisme) | Moins de configuration nécessaire, mais moins flexible |
 | **Infrastructure** | Déployé sur Kubernetes, s’adapte aux systèmes existants | Gère directement l’écriture vers la destination (BigQuery, DuckDB, etc.) |
 
-## Conclusion
+### Conclusion
 👉 **Si tu veux gérer des workflows de données complexes, déclencher des tâches conditionnelles ou orchestrer plusieurs outils ensemble, alors Kestra est plus adapté.**
 
 👉 **Si ton besoin est de charger facilement des données depuis des sources variées vers un data warehouse, avec un minimum de code, alors DLT est plus efficace.**
 
 En résumé, **DLT se concentre sur l’ingestion, tandis que Kestra gère tout un pipeline de bout en bout**. Mais on pourrait imaginer utiliser **DLT dans un pipeline Kestra** pour simplifier l’étape d’ingestion ! 🚀
----
-Vous avez dit :
 
+Vous avez dit :
+---
 *Pourrais-tu imaginer une espèce de homework en markdown où tu me ferais travailler sur ces 2 technologies ensemble, dans un pipeline, comme tu viens de le suggérer ?*
 
 ChatGPT a dit :
-
+---
 *Voici un **homework en Markdown** où tu vas créer un pipeline de données intégrant **DLT** pour l’ingestion et **Kestra** pour l’orchestration. L’objectif est de **charger des données depuis une API dans BigQuery** via DLT, tout en utilisant Kestra pour planifier et gérer l’exécution.*
 # 🏆 Homework : Intégration de DLT et Kestra dans un pipeline ETL
 ### 🎯 Objectif
@@ -216,7 +216,7 @@ print(f"Données chargées avec succès : {load_info}")
 python dlt_ingestion.py
 ```
 🚀 **Résultat attendu** : Une **table brute** `staging_taxi_trips` est créée dans BigQuery avec les données chargées.
----
+
 ### 2️⃣ Étape 2 : Création d’une table optimisée (partitionnée + clusterisée)
 📌 **Tâche** :
 
@@ -252,6 +252,7 @@ FROM `your_project_id.taxi_data.optimized_taxi_trips`
 WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
 ```
 3. **Compare l’estimation des octets traités** pour chaque requête.
+
 🚀 **Résultat attendu** : La requête sur la table **optimisée** traite **beaucoup moins d’octets** que celle sur la table brute.
 ### ✅ Résultats attendus
 À la fin du homework, tu dois :
