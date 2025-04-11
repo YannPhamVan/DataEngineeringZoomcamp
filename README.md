@@ -21,7 +21,7 @@ Over several weeks, it covers key topics such as:
 📚 Official links:
 - [Course syllabus](https://github.com/DataTalksClub/data-engineering-zoomcamp#course-syllabus)
 - [Companion blog post](https://datatalks.club/blog/data-engineering-zoomcamp.html)
-- [YouTube playlist](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJjEePXIdE8U0o9QApqZpzl)
+- [YouTube playlist](https://youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&si=Kt0WNE5RAspPqktE)
 
 ---
 
