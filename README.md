@@ -56,7 +56,7 @@ Each folder corresponds to one module of the program and contains:
 
 ## 📆 Timeline
 
-[Course overview](Images\course-overview.jpg)
+![Course overview](Images/course-overview.jpg)
 
 | Week | Module                         | Status      |
 |------|--------------------------------|-------------|
